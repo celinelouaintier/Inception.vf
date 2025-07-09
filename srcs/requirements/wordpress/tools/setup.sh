@@ -2,6 +2,8 @@
 
 cd /var/www/html
 
+sleep 5
+
 if [ ! -f wp-config.php ]; then
     echo "📦​ Downloading Wordpress..."
     wget https://wordpress.org/latest.tar.gz
