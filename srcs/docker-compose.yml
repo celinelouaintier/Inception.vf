@@ -14,7 +14,6 @@ services:
       - inception
 
   mariadb:
-    # image: mariadb:10.5
     build: ./requirements/mariadb
     container_name: mariadb
     restart: always
@@ -22,7 +21,6 @@ services:
       - .env
     volumes:
       - mariadb_data:/var/lib/mysql
-      - ./requirements/mariadb/tools/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - inception
 
