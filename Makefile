@@ -3,19 +3,13 @@ NAME = inception
 DOCKER_COMPOSE = docker compose
 COMPOSE_FILE = srcs/docker-compose.yml
 
-VOLUMES = mariadb_data wordpress_data
-
 GREEN = \033[0;32m
 RESET = \033[0m
 
 .PHONY: all up down build clean fclean re
 
 
-all: init up
-
-init:
-	mkdir -p /home/clouaint/data/mariadb
-	mkdir -p /home/clouaint/data/wordpress
+all: up
 
 up:
 	@echo "$(GREEN)🔼 Starting containers...$(RESET)"
