@@ -10,7 +10,12 @@ RESET = \033[0m
 
 .PHONY: all up down build clean fclean re
 
-all: up
+
+all: init up
+
+init:
+	mkdir -p /home/clouaint/data/mariadb
+	mkdir -p /home/clouaint/data/wordpress
 
 up:
 	@echo "$(GREEN)🔼 Starting containers...$(RESET)"
@@ -36,5 +41,6 @@ clean:
 fclean: clean delete
 	@echo "$(GREEN)🧨 Removing volumes...$(RESET)"
 	docker rmi -f mariadb wordpress nginx 2>/dev/null || true
+
 
 re: fclean build up
