@@ -14,7 +14,12 @@ all: up
 
 up:
 	@echo "$(GREEN)🔼 Starting containers...$(RESET)"
+	mkdir -p /home/clouaint/data/mariadb
+	mkdir -p /home/clouaint/data/wordpress
 	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) up -d
+
+delete:
+	rm -rf /home/clouaint/data/*
 
 down:
 	@echo "$(GREEN)🔽 Stopping containers...$(RESET)"
@@ -28,8 +33,8 @@ clean:
 	@echo "$(GREEN)🧹 Removing containers...$(RESET)"
 	$(DOCKER_COMPOSE) -f $(COMPOSE_FILE) down
 
-fclean: clean
+fclean: clean delete
 	@echo "$(GREEN)🧨 Removing volumes...$(RESET)"
-	docker volume rm $(VOLUMES) 2>/dev/null || true
+	docker rmi -f mariadb wordpress nginx 2>/dev/null || true
 
 re: fclean build up
